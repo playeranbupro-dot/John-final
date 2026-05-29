@@ -1126,7 +1126,7 @@ function processFiles(files) {
   });
 }
 
-function handleUpload() {
+async function handleUpload() {
   const title = document.getElementById('prodName').value.trim();
   const cat   = document.getElementById('fCategory').value;
   let lang    = document.getElementById('fLanguage').value;
