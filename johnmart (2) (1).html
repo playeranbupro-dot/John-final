@@ -1156,8 +1156,19 @@ function handleUpload() {
   btn.textContent = 'Saving...';
 
   setTimeout(() => {
-    products.push({ id: Date.now(), title, cat, lang, price, stock, desc, images: imgs });
-    saveProducts();
+    await supabaseClient
+  .from('products')
+  .insert([
+    {
+      title,
+      cat,
+      lang,
+      price,
+      stock,
+      desc,
+      images: imgs
+    }
+  ]);
 
     document.getElementById('alertSuccess').style.display = 'block';
     setTimeout(() => {
