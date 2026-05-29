@@ -1156,7 +1156,7 @@ async function handleUpload() {
   btn.textContent = 'Saving...';
 
   setTimeout(() => {
-    await supabaseClient
+     supabaseClient
   .from('products')
   .insert([
     {
