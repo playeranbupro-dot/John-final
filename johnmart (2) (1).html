@@ -820,7 +820,7 @@ footer a:hover { color: #fff; }
 /* ════════════════════════════════════════
    STATE
 ════════════════════════════════════════ */
-let products  = JSON.parse(localStorage.getItem('mm_products') || '[]');
+let products = [];
 let cart      = JSON.parse(localStorage.getItem('mm_cart')     || '[]');
 let adminMode = false;
 let catFilter  = 'all';
@@ -1272,8 +1272,6 @@ function removeFromCart(id) {
    INIT
 ════════════════════════════════════════ */
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCart(); });
-renderPopular();
-updateBadge();
    const SUPABASE_URL = "https://rtkwkxlwjqkhqwaxuqhe.supabase.co/rest/v1/";
 const SUPABASE_ANON_KEY = "a41e9af5-1e14-40ed-a932-ad3b41267ab3";
 
@@ -1281,6 +1279,23 @@ const supabaseClient = supabase.createClient(
   SUPABASE_URL,
   SUPABASE_ANON_KEY
 );
+   async function loadProducts() {
+  const { data, error } = await supabaseClient
+    .from('products')
+    .select('*');
+
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  products = data;
+
+  renderPopular();
+   }
+loadProducts();
+updateBadge();
+   
    console.log("Supabase Connected");
 </script>
 </body>
