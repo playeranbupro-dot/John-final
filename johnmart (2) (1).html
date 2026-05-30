@@ -1109,7 +1109,7 @@ if(fileInput) {
 function processFiles(files) {
   const preview = document.getElementById('imgPreview');
   const currentCount = preview.querySelectorAll('.preview-thumb').length;
-  const maxSlots = 5 - currentCount;
+  const maxSlots = Infinity;
   
   Array.from(files).slice(0, maxSlots).forEach(file => {
     if (!file.type.startsWith('image/')) return;
