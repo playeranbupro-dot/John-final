@@ -1174,10 +1174,13 @@ console.log('DATA:', data);
 console.log('ERROR:', error);
 
 if(error){
-  alert(error.message);
+   alert(error.message);
+   btn.disabled = false;
+   btn.textContent = 'Save Product';
+   return;
 }
 
-    document.getElementById('alertSuccess').style.display = 'block';
+document.getElementById('alertSuccess').style.display = 'block';
     setTimeout(() => {
       showPage('admin');
       btn.disabled = false;
