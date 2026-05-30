@@ -1155,20 +1155,27 @@ async function handleUpload() {
   btn.disabled = true;
   btn.textContent = 'Saving...';
 
-  setTimeout(() => {
-     supabaseClient
-  .from('products')
-  .insert([
-    {
-      title,
-      cat,
-      lang,
-      price,
-      stock,
-      desc,
-      images: imgs
-    }
-  ]);
+  setTimeout(async () => {
+     const { data, error } = await supabaseClient
+.from('products')
+.insert([
+{
+  title,
+  cat,
+  lang,
+  price,
+  stock,
+  desc,
+  images: imgs
+}
+]);
+
+console.log('DATA:', data);
+console.log('ERROR:', error);
+
+if(error){
+  alert(error.message);
+}
 
     document.getElementById('alertSuccess').style.display = 'block';
     setTimeout(() => {
