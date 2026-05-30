@@ -1113,7 +1113,7 @@ function processFiles(files) {
   
   Array.from(files).slice(0, maxSlots).forEach(file => {
     if (!file.type.startsWith('image/')) return;
-    if (file.size > 5 * 1024 * 1024) { toast(`${file.name} is too large (max 5MB)`); return; }
+    if (file.size > 10 * 1024 * 1024) { toast(`${file.name} is too large (max 10MB)`); return; }
     
     const reader = new FileReader();
     reader.onload = ev => {
